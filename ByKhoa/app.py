@@ -50,7 +50,7 @@ def login():
                 return redirect(url_for('onboarding'))
             return redirect(url_for('index'))
             
-        # Thêm 'danger' để cảnh báo màu đỏ
+        
         flash('Sai tài khoản hoặc mật khẩu!', 'danger')
     return render_template('login.html')
 
@@ -67,7 +67,7 @@ def onboarding():
         conn.commit()
         conn.close()
         
-        # Thêm 'success' để báo màu xanh
+        
         flash('Cảm ơn bạn đã hoàn thành khảo sát!', 'success')
         return redirect(url_for('index'))
     return render_template('onboarding.html', username=session['username'])
@@ -86,12 +86,11 @@ def register():
         
         conn = get_db_connection()
         
-        # KIỂM TRA TRƯỚC XEM CÓ BỊ TRÙNG KHÔNG ĐỂ BÁO LỖI CHÍNH XÁC
+        
         existing_user = conn.execute('SELECT * FROM users WHERE username = ? OR email = ?', (username, email)).fetchone()
         
         if existing_user:
             conn.close()
-            # Báo lỗi cực kỳ chi tiết cho người dùng
             if existing_user['username'] == username:
                 flash('Lỗi: Tên đăng nhập này đã có người sử dụng!', 'danger')
             else:
@@ -99,7 +98,6 @@ def register():
             return redirect(url_for('register'))
             
         try:
-            # Nếu không trùng, tiến hành lưu vào DB
             conn.execute('INSERT INTO users (username, password, email, fullname, position, company, phone, address) VALUES (?,?,?,?,?,?,?,?)', 
                          (username, password, email, fullname, position, company, phone, address))
             conn.commit()

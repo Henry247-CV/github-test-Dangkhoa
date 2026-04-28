@@ -5,7 +5,6 @@
     <title>Danh sách ứng viên - VKU AI Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* CSS để khung chat nổi lên và nằm ở góc phải dưới cùng */
         #chatPopup {
             display: none; 
             position: fixed;
@@ -128,13 +127,10 @@
     </div>
 
     <script>
-        // Hàm mở khung chat và đổi tên người chat
         function openChat(name) {
             document.getElementById('chatUserName').innerText = name; 
             document.getElementById('chatPopup').style.display = 'block'; 
         }
-
-        // Hàm đóng khung chat
         function closeChat() {
             document.getElementById('chatPopup').style.display = 'none'; 
         }
